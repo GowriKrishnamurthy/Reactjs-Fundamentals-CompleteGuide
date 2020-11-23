@@ -12,12 +12,21 @@ class App extends Component {
     ]
   }
 
-  switchNameHandler=()=> {
-    //DONT DO THIS... this.state.persons[0].name='Thomas';
+  switchNameHandler=()=> {    
     this.setState({
       persons:[
         { name:'Thomas',age:28 },
         { name:'Harry',age:30 },
+        { name:'Roseline',age:25 }
+      ]
+    });
+  }
+
+  nameChangedHandler=(event)=> {
+    this.setState({
+      persons:[
+        { name:'Thomas',age:28 },
+        { name:event.target.value, age:30 },
         { name:'Roseline',age:25 }
       ]
     });
@@ -30,9 +39,21 @@ class App extends Component {
         
         <button onClick={this.switchNameHandler}>Switch Name</button>
         {/* Using own react component*/}
-        <Person name= {this.state.persons[0].name} age={this.state.persons[0].age} /> 
-        <Person name= {this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies:Racing </Person>
-        <Person name= {this.state.persons[2].name} age={this.state.persons[2].age} /> 
+        <Person 
+          name= {this.state.persons[0].name} 
+          age={this.state.persons[0].age} 
+          /> 
+        <Person 
+          name= {this.state.persons[1].name} 
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler}
+          changed={this.nameChangedHandler} >
+            My hobbies:Racing
+          </Person>
+        <Person 
+          name= {this.state.persons[2].name} 
+          age={this.state.persons[2].age}           
+          /> 
       </div>
 
       // JSX is just syntactic sugar for JavaScript, allowing us to write HTMLish code instead of

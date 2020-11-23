@@ -6,11 +6,15 @@ import React from 'react';
 const person = (props) => {
     return(
         <div>
-            <p> I'm  {props.name} and I'm {props.age} years old!</p>            
+            <p onClick={props.click}> I'm  {props.name} and I'm {props.age} years old!</p>            
             <p> {props.children}</p>            
+            <input 
+                type="text" 
+                // 2 way binding setup
+                onChange={props.changed}
+                value={props.name}/>
         </div>
-    )
- 
+    ) 
 };
 
 export default person; 
