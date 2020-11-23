@@ -10,7 +10,9 @@ class App extends Component {
         <h1> Hi, I'm a React App!</h1>
         
         {/* Using own react component*/}
-        <Person /> 
+        <Person name='Tom' age='28' /> 
+        <Person name='Harry' age='30'> My hobbies:Racing </Person>
+        <Person name='Rose' age='25'/> 
       </div>      
 
       // JSX is just syntactic sugar for JavaScript, allowing us to write HTMLish code instead of
