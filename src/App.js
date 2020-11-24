@@ -9,7 +9,8 @@ class App extends Component {
       { name:'Tom',age:28 },
       { name:'Harry',age:30 },
       { name:'Rose',age:25 }
-    ]
+    ],
+    showPersons:false
   }
 
   switchNameHandler=()=> {    
@@ -32,6 +33,10 @@ class App extends Component {
     });
   }
 
+  togglePersonHandler = () => {
+    this.setState({showPersons: !this.state.showPersons})
+  }
+
   render() {
     const style = {
       backgroundColor:'white',
@@ -46,23 +51,29 @@ class App extends Component {
         
         <button 
           style={style}
-          onClick={this.switchNameHandler}>Switch Name</button>
-        {/* Using own react component*/}
-        <Person 
-          name= {this.state.persons[0].name} 
-          age={this.state.persons[0].age} 
-          /> 
-        <Person 
-          name= {this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler}
-          changed={this.nameChangedHandler} >
-            My hobbies:Racing
-          </Person>
-        <Person 
-          name= {this.state.persons[2].name} 
-          age={this.state.persons[2].age}           
-          /> 
+          onClick={this.togglePersonHandler}>Show/Hide</button>
+          {
+            this.state.showPersons  ?
+              <div>
+                  <Person 
+                    name= {this.state.persons[0].name} 
+                    age={this.state.persons[0].age} 
+                  /> 
+                  <Person 
+                    name= {this.state.persons[1].name} 
+                    age={this.state.persons[1].age}
+                    click={this.switchNameHandler}
+                    changed={this.nameChangedHandler} >
+                    My hobbies:Racing
+                  </Person>
+                  <Person 
+                    name= {this.state.persons[2].name} 
+                    age={this.state.persons[2].age}           
+                  /> 
+                </div>
+                :
+                null
+          }
       </div>
 
       // JSX is just syntactic sugar for JavaScript, allowing us to write HTMLish code instead of
