@@ -6,21 +6,33 @@ import Person from './Person/Person';
 class App extends Component {
   state ={
     persons:[
-      { name:'Tom',age:28 },
-      { name:'Harry',age:30 },
-      { name:'Rose',age:25 }
+      { id:'1', name:'Tom',age:28 },
+      { id:'2', name:'Harry',age:30 },
+      { id:'3', name:'Rose',age:25 }
     ],
     showPersons:false
   }
 
-  nameChangedHandler=(event)=> {
-    this.setState({
-      persons:[
-        { name:'Thomas',age:28 },
-        { name:event.target.value, age:30 },
-        { name:'Roseline',age:25 }
-      ]
-    });
+  nameChangedHandler=(event, id)=> {
+    //Which person
+    const personIndex = this.state.persons.findIndex(p=>p.id===id);
+
+    //Copy of the state person variable
+    const personToChange = {
+      ...this.state.persons[personIndex]
+    }
+    // or anohter way to create personToChange object.
+    //const personToChange = Object.assign({},this.state.persons[personIndex])
+
+    //update value
+    personToChange.name = event.target.value;
+
+    //  personsUpdated is a copy os state person array
+    const personsUpdated = [...this.state.persons];
+    personsUpdated[personIndex] = personToChange;
+     
+    // reset the global state person with the updated object person
+    this.setState({ persons:personsUpdated});
   }
 
   togglePersonHandler = () => {
@@ -57,6 +69,8 @@ class App extends Component {
               click={()=>this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
+              key={person.id}
+              changed={(event)=>this.nameChangedHandler(event,person.id)}
             />
           }
         )}        
