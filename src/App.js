@@ -45,35 +45,31 @@ class App extends Component {
       padding:'8px',
       cursor:'pointer'
     }
+    let persons = null;
+    
+    if(this.state.showPersons)
+    {
+      persons=(
+      <div>
+        { this.state.persons.map(person=>{
+            return <Person 
+              name={person.name}
+              age={person.age}
+            />
+          }
+        )};        
+      </div>
+      );
+    }
     return (
       <div className="App">
         <h1> Hi, I'm a React App!</h1>
         
         <button 
           style={style}
-          onClick={this.togglePersonHandler}>Show/Hide</button>
-          {
-            this.state.showPersons  ?
-              <div>
-                  <Person 
-                    name= {this.state.persons[0].name} 
-                    age={this.state.persons[0].age} 
-                  /> 
-                  <Person 
-                    name= {this.state.persons[1].name} 
-                    age={this.state.persons[1].age}
-                    click={this.switchNameHandler}
-                    changed={this.nameChangedHandler} >
-                    My hobbies:Racing
-                  </Person>
-                  <Person 
-                    name= {this.state.persons[2].name} 
-                    age={this.state.persons[2].age}           
-                  /> 
-                </div>
-                :
-                null
-          }
+          onClick={this.togglePersonHandler}>Show/Hide</button>          
+          { persons }
+                          
       </div>
 
       // JSX is just syntactic sugar for JavaScript, allowing us to write HTMLish code instead of
