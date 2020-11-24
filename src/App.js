@@ -13,16 +13,6 @@ class App extends Component {
     showPersons:false
   }
 
-  switchNameHandler=()=> {    
-    this.setState({
-      persons:[
-        { name:'Thomas',age:28 },
-        { name:'Harry',age:30 },
-        { name:'Roseline',age:25 }
-      ]
-    });
-  }
-
   nameChangedHandler=(event)=> {
     this.setState({
       persons:[
@@ -36,7 +26,18 @@ class App extends Component {
   togglePersonHandler = () => {
     this.setState({showPersons: !this.state.showPersons})
   }
+  
+  deletePersonHandler = (personIndex) => {
+    // Get all persons in to a new array & remove person corresponding to the input index     
+    //const personsArr = this.state.persons.slice();
 
+    // using ES6 spread operator
+    const personsArr = [...this.state.persons]
+    personsArr.splice(personIndex,1);
+    
+    // Set the global state variable person with the new arry
+    this.setState({persons: personsArr});
+  }
   render() {
     const style = {
       backgroundColor:'white',
@@ -51,13 +52,14 @@ class App extends Component {
     {
       persons=(
       <div>
-        { this.state.persons.map(person=>{
+        { this.state.persons.map((person, index)=>{
             return <Person 
+              click={()=>this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
             />
           }
-        )};        
+        )}        
       </div>
       );
     }
@@ -68,16 +70,8 @@ class App extends Component {
         <button 
           style={style}
           onClick={this.togglePersonHandler}>Show/Hide</button>          
-          { persons }
-                          
+          { persons }                          
       </div>
-
-      // JSX is just syntactic sugar for JavaScript, allowing us to write HTMLish code instead of
-      // nested React.createElement(...) calls.
-      // React.createElement(
-      //   'div',
-      //   {className:'App'},
-      //   React.createElement('h1',null,"Hi, I\'m a React App!"))
     );
   }
 }
