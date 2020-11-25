@@ -1,8 +1,6 @@
 import React from 'react';
 import './Person.css';
-// Functional component
-// A component is a function that returns/ renders some JSX code 
-// it defines which HTML code React should render to the real DOM in the end.
+import Radium  from 'radium';
 
 const person = (props) => {
     return(
@@ -18,4 +16,4 @@ const person = (props) => {
     ) 
 };
 
-export default person; 
+export default Radium(person); 
