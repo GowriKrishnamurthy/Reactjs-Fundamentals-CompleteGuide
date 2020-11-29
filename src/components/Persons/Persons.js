@@ -7,11 +7,11 @@ const persons = (props) =>
     {
       return <ErrorBoundary key={person.id}>
        <Person 
-       click={()=>props.deletePersonHandler(index)}
+       clicked={()=>props.clicked(index)}
        name={person.name}
        age={person.age}
        key={person.id}
-       changed={(event)=>props.nameChangedHandler(event,person.id)}
+       changed={(event)=>props.changed(event,person.id)}
      />
      </ErrorBoundary>
     }
