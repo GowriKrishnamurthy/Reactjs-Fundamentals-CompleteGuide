@@ -4,6 +4,32 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 class Persons extends Component
 {    
+    // static getDerivedStateFromProps(props, state)
+    // {
+    //     console.log('[Persons.js] getDerivedStateFromProps');  
+    //     return state; 
+    // }
+    
+    componentWillReceiveProps(props)
+    {
+        console.log('[Persons.js] componentWillReceiveProps',props);  
+    }
+    shouldComponentUpdate(nextProps,nextState)
+    {
+        console.log('[Persons.js] shouldComponentUpdate');  
+        return true;
+    }
+
+    getSnapshotBeforeUpdate(prevProps,prevState)
+    {
+        console.log('[Persons.js] getSnapshotBeforeUpdate');  
+        return true;
+    }
+
+    componentDidUpdate(){
+        console.log('[Persons.js] componentDidUpdate');  
+    }
+
     render() {
         console.log('[Persons.js] rendering..');   
         return(  
