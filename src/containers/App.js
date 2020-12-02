@@ -30,6 +30,17 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps,nextState)
+  {
+    console.log('[App.js] shouldComponentUpdate');
+    return true; //setting it to false will prevent toggling to occur because we're preventing the update on this component
+  }
+
+  componentDidUpdate()
+  {
+    console.log('[App.js] componentDidUpdate');
+  }
+
   nameChangedHandler=(event, id)=> {
     //Which person
     const personIndex = this.state.persons.findIndex(p=>p.id===id);
