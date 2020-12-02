@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './App.css';
+import classes from './App.module.css';
 import Radium,{StyleRoot}  from 'radium';
 import Persons from '../components/Persons/Persons'; 
 import Cockpit from '../components/Cockpit/Cockpit'; 
