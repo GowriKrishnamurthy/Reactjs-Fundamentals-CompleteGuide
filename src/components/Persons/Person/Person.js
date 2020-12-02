@@ -1,29 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Person.module.css';
 import Radium  from 'radium';
 
-const person = (props) => {
-    const style ={
-        '@media(min-width: 500px)':{
-            width: '450px'
-            }
-    };    
-    // const rand = Math.random()
-    // if(rand > 0.7){
-    //     throw new Error('Something went wrong!'); 
-    // }
-
-    return(        
-        <div className="Person" style={style}>
-            <p onClick={props.clicked}> I'm  {props.name} and I'm {props.age} years old!</p>            
-            <p> {props.children}</p>            
+class Person extends Component
+{
+    render() {    
+    console.log('[Persons.js] rendering..');   
+    return(      
+        <div className="Person">
+            <p onClick={this.props.clicked}> I'm  {this.props.name} and I'm {this.props.age} years old!</p>            
+            <p> {this.props.children}</p>            
             <input 
                 type="text" 
                 // 2 way binding setup
-                onChange={props.changed}
-                value={props.name}/>
+                onChange={this.props.changed}
+                value={this.props.name}/>
         </div>
-    ) 
-};
-
-export default Radium(person); 
+        );
+    }
+}
+export default Radium(Person); 
