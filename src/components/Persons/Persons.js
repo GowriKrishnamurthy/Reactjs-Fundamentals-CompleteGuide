@@ -30,6 +30,11 @@ class Persons extends Component
         console.log('[Persons.js] componentDidUpdate');  
     }
 
+    //Add cleanup code here : executes just before this component is removed,
+    componentWillUnmount(){
+        console.log('[Persons.js] componentWillUnmount'); 
+    }
+
     render() {
         console.log('[Persons.js] rendering..');   
         return(  

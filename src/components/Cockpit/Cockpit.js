@@ -11,7 +11,11 @@ const cockpit = ( props ) => {
         // Run this code only when our persons changed        
         setTimeout(()=>{
             alert('Saved data to cloud!');
-            }, 1000);       
+            }, 1000); 
+            // runs BEFORE main useEffect function runs, but AFTER the (first) render cycle
+            return() => {
+              console.log('[Cockpit.js] cleanup work in useEffect');
+            }      
     }, [props.persons]); 
     // if empty array [] is passed to this 2nd param, code gets executed only when dependencies 
     // If there are no dependencies, they can never change and therefore this can never rerun, it will run for the first time,
@@ -19,7 +23,13 @@ const cockpit = ( props ) => {
 
     // 2nd param of UseEffect can have multiple fields that this code may depend on.. eg [a,b,c]
 
-    //useEffect1()
+     // executes for every rendered cycle of the cockpit
+     useEffect(()=>{
+      console.log('[Cockpit.js] 2nd useEffect');
+      return() => {
+        console.log('[Cockpit.js] cleanup work in useEffect');
+      }   
+     });
     //useEffect2()
     
     const assignedClasses = [];
