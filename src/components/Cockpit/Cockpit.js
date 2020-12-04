@@ -38,10 +38,10 @@ const cockpit = ( props ) => {
         btnStyle = styles.Red;
     }
 
-    if ( props.persons.length <= 2 ) {
+    if ( props.personsLength <= 2 ) {
       assignedClasses.push( styles.red ); // classes = ['red']
     }
-    if ( props.persons.length <= 1 ) {
+    if ( props.personsLength <= 1 ) {
       assignedClasses.push( styles.bold ); // classes = ['red', 'bold']
     }
 
@@ -49,11 +49,11 @@ const cockpit = ( props ) => {
         <div classes={styles.Cockpit}>
         <h1 className={assignedClasses.join(' ')}> {props.title}</h1>        
         <button 
-        className={btnStyle} 
-        onClick={props.clicked}>
+            className={btnStyle} 
+            onClick={props.clicked}>
             Show/Hide</button>          
         </div>
     );
   }
 
-export default cockpit; 
+export default React.memo(cockpit); 
